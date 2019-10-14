@@ -2,23 +2,35 @@
 Shortlinks
 
 # How to use on your browser
+## Installation
 Go to [chrome://settings/searchEngines?search=search](chrome://settings/searchEngines?search=search)
 
 Add Other Search Engine Button
 
-## Search engine
+### Search engine
 ```
 uwu
 ```
 
-## Keyword
+### Keyword
 ```
 uw
 ```
 
-## URL with %s in place of query
+### URL with %s in place of query
 ```
 http://uwu.mothakes.com/go/%s
+```
+
+## How to use
+Go to the Chrome search bar. Type `uw` then `space` It should look like:
+```
+Search uwu |
+```
+
+Then type in what you want for example, this will redirect you to Ding Tea.
+```
+Search uwu | boba
 ```
 
 
