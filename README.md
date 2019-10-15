@@ -19,7 +19,7 @@ uw
 
 ### URL with %s in place of query
 ```
-http://uwu.mothakes.com/go/%s
+http://uwu.run/go/%s
 ```
 
 ## How to use
