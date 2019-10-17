@@ -47,7 +47,6 @@ def add(short_link):
         return redirect(url_for('go', short_link=short_link))
 
 
-
 def main(args):
 
     app.run(
