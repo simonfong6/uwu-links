@@ -25,8 +25,7 @@ links = Links()
 
 @app.route('/')
 def index():
-
-    return send_from_directory('.', 'index.html')
+    return render_template('index.jinja')
 
 @app.route('/go/<short_link>')
 def go(short_link):
