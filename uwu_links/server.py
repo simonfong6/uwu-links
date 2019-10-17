@@ -3,7 +3,7 @@
 Server code to track number of visitors.
 """
 import logging
-import json
+
 from flask import Flask
 from flask import request
 from flask import send_from_directory
@@ -11,15 +11,13 @@ from flask import redirect
 from flask import render_template
 from flask import url_for
 
+from links import Links
+
 
 app = Flask(__name__)
 
 
-class Links(dict):
-    pass
-
-
-links = Links()
+links = None
 
 
 @app.route('/')
@@ -29,11 +27,11 @@ def index():
 @app.route('/go/<short_link>')
 def go(short_link):
     global links
-    if short_link not in links:
-        print(links)
+    if not links.has(short_link):
         return redirect(url_for('add', short_link=short_link))
     else:
-        return redirect(links[short_link])
+        url = links.get(short_link)
+        return redirect(url)
 
 @app.route('/add/<short_link>', methods=['GET', 'POST'])
 def add(short_link):
@@ -42,17 +40,23 @@ def add(short_link):
         return render_template('add.jinja', short_link=short_link)
     elif request.method == 'POST':
         url = request.form['url']
-        links[short_link] = url
+
+        links.insert(short_link, url)
         print("Adding {}".format(url))
+
         return redirect(url_for('go', short_link=short_link))
 
 
 def main(args):
+    global links
+
+    links = Links()
 
     app.run(
         host='0.0.0.0',
         debug=args.debug,
-        port=args.port)
+        port=args.port
+    )
 
 
 if __name__ == '__main__':
