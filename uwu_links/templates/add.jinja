@@ -13,24 +13,34 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="icon" href="/static/favicon.png">
+  <style>
+    .rounded-box {
+      border-radius: 24px;
+      border: 1px solid #ced4da;
+    }
+    .no-border {
+      border: none;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>uwu/{{ short_link }}</h1>
     <form action="/add/{{short_link}}" method="POST">
       <div class="form-group">
-        <label for="exampleInputEmail1">URL</label>
-        <input
-          type="url"
-          name="url"
-          id="url"
-          placeholder="https://example.com"
-          pattern="https://.*"
-          size="30"
-          class="form-control"
-          required>
+        <div class="rounded-box p-2">
+          <input
+            type="url"
+            name="url"
+            id="url"
+            placeholder="https://example.com"
+            pattern="https://.*"
+            size="30"
+            class="form-control no-border "
+            required>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary my-1">Save</button>
     </form>
   </div>
 
