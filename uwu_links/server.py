@@ -31,7 +31,10 @@ def go(short_link):
         return redirect(url_for('add', short_link=short_link))
     else:
         url = links.get(short_link)
-        print(f"Redirecting '{short_link}' -> '{url}'.")
+        print("Redirecting '{short_link}' -> '{url}'.".format(
+            short_link=short_link,
+            url=url
+        ))
         return redirect(url)
 
 @app.route('/add/<short_link>', methods=['GET', 'POST'])
@@ -43,7 +46,10 @@ def add(short_link):
         url = request.form['url']
 
         links.insert(short_link, url)
-        print(f"Adding '{short_link}' -> '{url}'.")
+        print("Adding '{short_link}' -> '{url}'.".format(
+            short_link=short_link,
+            url=url
+        ))
 
         return redirect(url_for('go', short_link=short_link))
 
