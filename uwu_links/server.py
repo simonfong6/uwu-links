@@ -51,7 +51,7 @@ def add(short_link):
             url=url
         ))
 
-        return redirect(url_for('go', short_link=short_link))
+        return render_template('add_after.jinja', short_link=short_link, url=url)
 
 
 def main(args):
