@@ -1,14 +1,19 @@
 """Map of short links to the full urls."""
 from google.cloud import firestore
+from google.cloud.firestore import Increment
 
 LINKS_COLLECTION_NAME = u'links'
+TOTAL_VISITS_COLLECTION_NAME = u'total_visits'
 URL_KEY = u'url'
+VISIT_COUNT_KEY = u'visit_count'
+COUNT_KEY = u'count'
 
 class Links:
 
     def __init__(self):
         self.db = firestore.Client()
         self.links = self.db.collection(LINKS_COLLECTION_NAME)
+        self.total_visits = self.db.collection(TOTAL_VISITS_COLLECTION_NAME).document('visits')
 
     def has(self, keyword):
         doc_ref = self.links.document(keyword)
@@ -29,5 +34,19 @@ class Links:
         doc_dict = doc.to_dict()
         url = doc_dict[URL_KEY]
 
+        self.increment(keyword)
+
         return url
 
+    def increment(self, keyword):
+        doc_ref = self.links.document(keyword)
+        doc_ref.update({VISIT_COUNT_KEY: Increment(1)})
+
+    def increment_total_visits(self):
+        total_visits = self.total_visits.get()
+        if not total_visits.exists:
+            self.total_visits.set({COUNT_KEY: 0})
+        self.total_visits.update({COUNT_KEY: Increment(1)})
+
+l = Links()
+l.increment_total_visits()
