@@ -41,12 +41,10 @@ class Links:
     def increment(self, keyword):
         doc_ref = self.links.document(keyword)
         doc_ref.update({VISIT_COUNT_KEY: Increment(1)})
+        self.increment_total_visits()
 
     def increment_total_visits(self):
         total_visits = self.total_visits.get()
         if not total_visits.exists:
             self.total_visits.set({COUNT_KEY: 0})
         self.total_visits.update({COUNT_KEY: Increment(1)})
-
-l = Links()
-l.increment_total_visits()
