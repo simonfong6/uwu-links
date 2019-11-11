@@ -69,6 +69,16 @@ def add_after(short_link):
             short_link=short_link,
             url=url)
 
+@app.route('/directory')
+def directory():
+    global links
+    context = {
+        'short_link': 'shorties',
+        'url': 'urlies'
+    }
+    link_dicts = links.get_all_links()
+    return render_template('directory.jinja', link_dicts=link_dicts)
+
 
 def main(args):
     global links

@@ -48,3 +48,16 @@ class Links:
         if not total_visits.exists:
             self.total_visits.set({COUNT_KEY: 0})
         self.total_visits.update({COUNT_KEY: Increment(1)})
+
+    def get_all_links(self):
+        """Fetch all links from database."""
+        link_dicts = []
+
+        links = self.links.stream()
+
+        for link in links:
+            link_dict = link.to_dict()
+            link_dict['key'] = link.id
+            link_dicts.append(link_dict)
+
+        return link_dicts
