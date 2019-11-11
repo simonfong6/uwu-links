@@ -51,7 +51,23 @@ def add(short_link):
             url=url
         ))
 
-        return render_template('add_after.jinja', short_link=short_link, url=url)
+        return redirect(url_for('add_after', short_link=short_link))
+
+@app.route('/add-after/<short_link>')
+def add_after(short_link):
+    global links
+    if not links.has(short_link):
+        return redirect(url_for('add', short_link=short_link))
+    else:
+        url = links.get(short_link)
+        print("Redirecting '{short_link}' -> '{url}'.".format(
+            short_link=short_link,
+            url=url
+        ))
+        return render_template(
+            'add_after.jinja',
+            short_link=short_link,
+            url=url)
 
 
 def main(args):
