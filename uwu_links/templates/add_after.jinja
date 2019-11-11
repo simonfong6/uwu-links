@@ -13,8 +13,37 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="icon" href="/static/favicon.png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" SameSite=None Secure>
   <style>
+    .copy-button {
+      padding: 0;
+      border: none;
+      background: none;
+    }
   </style>
+
+  <script>
+    function copyLink(elementId) {
+      // Grab the text vaue from the targeted element.
+      let copyFromElement = document.getElementById(elementId);
+      let copyText = copyFromElement.text;
+
+      // Create dummy text element with copy value.
+      let input = document.createElement("input");
+      input.type = "text";
+      input.value = copyText;
+
+      // Add it to the page, copy the value.
+      document.body.appendChild(input); 
+      input.select();
+      document.execCommand("copy");
+
+      // Remove the dummy element.
+      document.body.removeChild(input);
+    }
+  </script>
 </head>
 <body>
   <div class="container">
@@ -23,14 +52,24 @@
       Now forwards to <a href="{{ url }}">{{ url }}</a>. 
     </p>
     <p>
-      uwu-link: <a href="http://uwu.run/go/{{ short_link }}">
+      uwu-link: <a
+                  id="uwu-link"
+                  href="http://uwu.run/go/{{ short_link }}">
                   uwu.run/go/{{ short_link }}
                 </a>
+                <button class="copy-button btn btn-light" onclick="copyLink('uwu-link')">
+                  <i class="fa fa-copy"></i>
+                </button>
     </p>
     <p>
-      Change the uwu-link at: <a href="http://uwu.run/add/{{ short_link }}">
+      Change the uwu-link at: <a
+                                id="uwu-add-link"
+                                href="http://uwu.run/add/{{ short_link }}">
                                 uwu.run/add/{{ short_link }}
                               </a>
+                              <button class="copy-button btn btn-light" onclick="copyLink('uwu-add-link')">
+                                <i class="fa fa-copy"></i>
+                              </button>
     </p>
   </div>
 
