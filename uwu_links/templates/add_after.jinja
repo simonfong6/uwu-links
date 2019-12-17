@@ -30,6 +30,9 @@
       let copyFromElement = document.getElementById(elementId);
       let copyText = copyFromElement.text;
 
+      // Remove extra whitespace.
+      copyText = copyText.trim();
+
       // Create dummy text element with copy value.
       let input = document.createElement("input");
       input.type = "text";
