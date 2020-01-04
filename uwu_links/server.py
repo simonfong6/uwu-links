@@ -13,6 +13,10 @@ from flask import url_for
 
 from links import Links
 
+logging.basicConfig(filename='logs/server.log')
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 
 app = Flask(__name__)
 
@@ -31,7 +35,7 @@ def go(short_link):
         return redirect(url_for('add', short_link=short_link))
     else:
         url = links.get(short_link)
-        print("Redirecting '{short_link}' -> '{url}'.".format(
+        logger.info("Redirecting '{short_link}' -> '{url}'.".format(
             short_link=short_link,
             url=url
         ))
@@ -46,7 +50,7 @@ def add(short_link):
         url = request.form['url']
 
         links.insert(short_link, url)
-        print("Adding '{short_link}' -> '{url}'.".format(
+        logger.info("Adding '{short_link}' -> '{url}'.".format(
             short_link=short_link,
             url=url
         ))
@@ -60,7 +64,7 @@ def add_after(short_link):
         return redirect(url_for('add', short_link=short_link))
     else:
         url = links.get(short_link)
-        print("Redirecting '{short_link}' -> '{url}'.".format(
+        logger.info("Redirecting '{short_link}' -> '{url}'.".format(
             short_link=short_link,
             url=url
         ))
