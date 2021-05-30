@@ -10,7 +10,7 @@ services:
     ports:
       - 8000:3333
     environment:
-      - GOOGLE_APPLICATION_CREDENTIALS=/secrets/uwu-links.json
+      - GOOGLE_APPLICATION_CREDENTIALS=/secrets/uwu-links-minikube.json
     volumes:
       - ~/.gcp:/secrets
 
