@@ -1,0 +1,42 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: uwu-links
+spec:
+  selector:
+    matchLabels:
+      app: uwu-links
+      tier: backend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: uwu-links
+        tier: backend
+    spec:
+      containers:
+        - name: uwu-links
+          image: simonfong6/uwu-links:0.0.1
+          ports:
+            - containerPort: 8000
+          env:
+            # https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /secrets/uwu-links-minikube.json
+          volumeMounts:
+          - name: secrets
+            mountPath: "/secrets"
+            readOnly: true
+      volumes:
+        - name: secrets
+          secret:
+            secretName: uwu-links
+            items:
+            - key: uwu-links-firestore
+              path: uwu-links-minikube.json
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
