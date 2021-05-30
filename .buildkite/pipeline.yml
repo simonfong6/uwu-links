@@ -1,0 +1,9 @@
+steps:
+  - command: kubectl get all
+  - wait
+  - command: docker-compose -f docker-compose.yml build
+  - wait
+  - command: kubectl apply -f ./kubernetes/service.yml
+  - command: kubectl apply -f ./kubernetes/deployment.yml
+  - wait
+  - command: kubectl get all
