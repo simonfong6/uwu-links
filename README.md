@@ -44,3 +44,4 @@ python3 server.py -d
 - [Google Firestore](https://cloud.google.com/firestore/docs/quickstart-servers#firestore_setup_dataset_pt1-python)
 - [Service Account for Firestore](https://console.cloud.google.com/iam-admin/serviceaccounts/create?project=uwu-links)
 - [Firestore Data](https://console.cloud.google.com/firestore/data?project=uwu-links)
+- [Kubernetes Secrets](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
