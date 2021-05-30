@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  uwu-links:
+    image: simonfong6/uwu-links:0.0.1
+    container_name: uwu-links
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - 8000:3333
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/secrets/uwu-links.json
+    volumes:
+      - ~/.gcp:/secrets
+
+networks: 
+  default:
+    name: uwu-links
