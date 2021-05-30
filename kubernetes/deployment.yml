@@ -18,7 +18,7 @@ spec:
         - name: uwu-links
           image: simonfong6/uwu-links:0.0.1
           ports:
-            - containerPort: 8000
+            - containerPort: 3333
           env:
             # https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
             - name: GOOGLE_APPLICATION_CREDENTIALS
