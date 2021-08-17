@@ -13,7 +13,7 @@ spec:
   # Replace with the IP of your minikube node / master node
   externalIPs:
     - 192.168.64.2
-    - 172.17.0.4
+    - 172.17.0.2
   selector:
     app: uwu-links
     tier: backend
